@@ -8,4 +8,7 @@ router.get('/', actividadController.obtenerTodas);
 //POST: http://localhost:3000/api/actividades
 router.post('/', actividadController.crear);
 
+
+router.delete('/:id', actividadController.eliminar);
+
 module.exports = router;

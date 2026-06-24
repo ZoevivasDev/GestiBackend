@@ -8,4 +8,6 @@ router.get('/', turnoController.obtenerTodos);
 //POST: http://localhost:3000/api/turnos
 router.post('/', turnoController.crear);
 
+router.put('/:id', turnoController.actualizar);
+
 module.exports = router;

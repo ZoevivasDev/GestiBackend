@@ -35,6 +35,31 @@ class TurnoController {
       res.status(400).json({ status: 'error', message: 'Error al planificar el turno', error: error.message });
     }
   }
+
+  // ACTUALIZAR UN TURNO (PUT)
+  async actualizar(req, res) {
+    try {
+      const { id } = req.params;
+      const { horario, profesor, limiteAlumnos } = req.body;
+
+      const turnoActualizado = await Turno.findByIdAndUpdate(
+        id,
+        { horario, profesor, limiteAlumnos },
+        { new: true } // devuelve el documento ya actualizado
+      );
+
+      if (!turnoActualizado) {
+        return res.status(404).json({ status: 'error', message: 'Turno no encontrado' });
+      }
+
+      res.status(200).json({ status: 'success', data: turnoActualizado });
+    } catch (error) {
+      res.status(400).json({ status: 'error', message: 'Error al actualizar el turno', error: error.message });
+    }
+  }
+
+
+
 }
 
 module.exports = new TurnoController();
